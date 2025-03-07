@@ -18,11 +18,6 @@ const Todo = ({ userEmail }) => {
         }
     }, [userEmail]);
 
-    if (task.trim () === 0) {
-        alert ("enter task");
-        return;
-    }
-
     const addTask = () => {
         if (!task.trim()) return;
         axios.post("https://todo-backend-4tog.onrender.com/tasks", { text: task, email: userEmail })
