@@ -28,7 +28,7 @@ function Signup() {
       }
       
       try {
-        const response = await axios.post ("http://127.0.0.1:5000/api/signup", signUpData);
+        const response = await axios.post ("https://todo-backend-4tog.onrender.com/api/signup", signUpData);
         console.log ("signup data saved:", response.data);
 
         setSignUpData ({
