@@ -13,7 +13,7 @@ const Todo = ({ userEmail }) => {
 
     useEffect(() => {
         if (userEmail) {
-            axios.get(`http://localhost:5000/tasks/${userEmail}`)
+            axios.get(`https://todo-backend-4tog.onrender.com/tasks/${userEmail}`)
                 .then((res) => setTasks(res.data));
         }
     }, [userEmail]);
@@ -25,7 +25,7 @@ const Todo = ({ userEmail }) => {
 
     const addTask = () => {
         if (!task.trim()) return;
-        axios.post("http://localhost:5000/tasks", { text: task, email: userEmail })
+        axios.post("https://todo-backend-4tog.onrender.com/tasks", { text: task, email: userEmail })
             .then((res) => {
                 setTasks([...tasks, res.data]);
                 setTask("");
@@ -33,7 +33,7 @@ const Todo = ({ userEmail }) => {
     };
 
     const markAsDone = (id) => {
-        axios.put(`http://localhost:5000/tasks/${id}`).then(() => {
+        axios.put(`https://todo-backend-4tog.onrender.com/tasks/${id}`).then(() => {
             setTasks(tasks.map(task =>
                 task._id === id ? { ...task, completed: true } : task
             ));
