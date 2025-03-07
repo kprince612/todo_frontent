@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from "axios"
 import "./Signup.css"
 import { Link, useNavigate } from 'react-router-dom';
+import { handleError, handleSuccess } from '../utils';
+import { ToastContainer } from 'react-toastify';
 
 function Signup() {
     const [signUpData, setSignUpData] = useState ({
@@ -23,7 +25,7 @@ function Signup() {
       e.preventDefault ();
 
       if (!signUpData.name.trim () || !signUpData.email.trim () || !signUpData.password.trim ()) {
-        alert ("all fields are required");
+        handleError ("all fields are required");
         return;
       }
       
@@ -37,12 +39,12 @@ function Signup() {
           password: "",
         })
 
-        alert ("signup successfully");
+        handleSuccess ("signup successfully");
         navigate ("/signin");
       }
 
       catch (err) {
-        alert ("error in sign up:", err);
+        handleError ("error in sign up:", err);
       }
     }
   return (
@@ -68,6 +70,7 @@ function Signup() {
         </form>
     </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

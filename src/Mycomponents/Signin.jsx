@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import TodoApp from './Todo';
+import { handleError, handleSuccess } from '../utils';
+import { ToastContainer } from 'react-toastify';
 
 function Signin() {
     const [loginForm, setLoginForm] = useState({
@@ -17,7 +19,7 @@ function Signin() {
         e.preventDefault();
 
         if (!loginForm.email.trim() || !loginForm.password.trim()) {
-            alert("email and password are required");
+            handleError ("email and password are required");
             return;
         }
 
@@ -25,13 +27,13 @@ function Signin() {
             const response = await axios.post("https://todo-backend-4tog.onrender.com/api/login", loginForm);
 
             if (response.data.user) {
-                alert("Login Successfully");
+                handleSuccess ("Login Successfully");
                 setUserEmail(response.data.user.email); // Store email after login
             }
             
             setLoginForm({ email: "", password: "" });
         } catch (err) {
-            alert("Login error or user may not exist, sign up first");
+            handleError ("Login error or user may not exist, sign up first");
             console.log(err);
         }
     };
@@ -57,6 +59,7 @@ function Signin() {
                     </div>
                 </div>
             )}
+            <ToastContainer />
         </div>
     );
 }
