@@ -39,8 +39,11 @@ function Signup() {
           password: "",
         })
 
+        setTimeout (() => {
+          navigate ("/signin");
+        }, 2000)
+        
         handleSuccess ("signup successfully");
-        navigate ("/signin");
       }
 
       catch (err) {
